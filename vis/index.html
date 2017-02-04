@@ -3,14 +3,96 @@
   <head>
     <meta charset="utf-8">
     <title>Visualisation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+    <style media="screen">
+      #vis {
+        position: relative;
+        width: 900px;
+        height: 600px;
+      }
+    </style>
   </head>
   <body>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="node_modules/datamaps/dist/datamaps.world.min.js"></script>
-    <div id="container" style="position: relative; width: 500px; height: 300px;"></div>
+    <div class="container">
+      <div id="vis"></div>
+    </div>
     <script>
-        var map = new Datamap({element: document.getElementById('container')});
+
+      var basic_choropleth = new Datamap({
+        element: document.getElementById("vis"),
+        projection: 'mercator',
+        fills: {
+          defaultFill: "#ABDDA4",
+          authorHasTraveledTo: "#fa0fa0"
+        },
+        data: {
+          USA: { fillKey: "authorHasTraveledTo" },
+          JPN: { fillKey: "authorHasTraveledTo" },
+          ITA: { fillKey: "authorHasTraveledTo" },
+          CRI: { fillKey: "authorHasTraveledTo" },
+          KOR: { fillKey: "authorHasTraveledTo" },
+          DEU: { fillKey: "authorHasTraveledTo" },
+        }
+      });
+
+      var colors = d3.scale.category10();
+
+      window.setInterval(function() {
+        basic_choropleth.updateChoropleth({
+          USA: colors(Math.random() * 10),
+          RUS: colors(Math.random() * 100),
+          AUS: { fillKey: 'authorHasTraveledTo' },
+          BRA: colors(Math.random() * 50),
+          CAN: colors(Math.random() * 50),
+          ZAF: colors(Math.random() * 50),
+          IND: colors(Math.random() * 50),
+        });
+      }, 2000);
+
+      // var map = new Datamap({
+      //     element: document.getElementById('container'),
+      //     fills: {
+      //         HIGH: '#afafaf',
+      //         LOW: '#123456',
+      //         MEDIUM: 'blue',
+      //         UNKNOWN: 'rgb(0,0,0)',
+      //         defaultFill: 'green'
+      //     },
+      //     data: {
+      //         IRL: {
+      //             fillKey: 'LOW',
+      //             numberOfThings: 2002
+      //         },
+      //         USA: {
+      //             fillKey: 'MEDIUM',
+      //             numberOfThings: 10381
+      //         }
+      //     }
+      // });
+
+      // Draw a legend for this map
+      // map.legend();
+
+
+      // updating choropleth
+      // map.updateChoropleth({
+      //    USA: {fillKey: 'LOW'},
+      //    CAN: '#0fa0fa'
+      // });
+
+      // reset map
+      // map.updateChoropleth(null, {reset: true})
+
     </script>
   </body>
 </html>
