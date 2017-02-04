@@ -5,7 +5,7 @@ import json
 
 MAGIC_COUNTRIES_CITIES_FILE = 'countries.json'
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
 api = tweepy.API(auth)
 
@@ -22,7 +22,7 @@ def get_top_trends(woeid):
     """
     Gives the top trends for the location
     Args:
-        :woeid is Yahoo woeid of the place
+        :woeid is Yahoo WOEID of the place
     """
     data = api.trends_place(698064)
     result = []
@@ -48,6 +48,15 @@ def get_tweets_by_location(lat, long, radius="100mi"):
     for tweet in data:
         result.append(tweet.text)
 
-    print(" ".join(result))
+    return result
 
-#get_tweets_by_location(51.5074, 0.1278)
+
+def get_tweets_by_country(country):
+    result = []
+
+    for city in country["largestcities"]:
+        result.extend(get_tweets_by_location(city["lat"], city["long"]))
+
+    return result
+
+print(get_tweets_by_country(get_magic_countries_cities_info()["countries"][0]))
