@@ -20,3 +20,19 @@ def get_top_trends(woeid):
     for trend in data[0]["trends"]:
         result.append(trend["name"])
     return result
+
+
+def get_tweets_by_location(lat, long, radius="10mi"):
+    """
+    Gives tweets from a location
+    Args:
+        :lat latitude
+        :long longitude
+        :radius <no. of miles> + "mi"
+    """
+    data = api.search("", geocode=(str(lat) + "," + str(long) + "," + radius),
+                      count=100)
+    for tweet in data:
+        print(tweet.text)
+
+get_tweets_by_location(51.5074, 0.1278)
