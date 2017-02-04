@@ -1,2 +1,9 @@
-TWITTER_KEY = 'asdfkal;sdjfka;lesmf1lmr1l3;m'
-TWITTER_SECRET = '13112312l312kj3l21j3lkjkljlk'
+TWITTER_KEY = 'hahahaImnotgivingthatout'
+TWITTER_SECRET = 'hahahaImnotgivingthatout'
+
+OAUTH_TOKEN = 'hahahaImnotgivingthatout'
+OAUTH_SECRET = 'hahahaImnotgivingthatout'
+
+OAUTH_VERIFIER = 'hahahaImnotgivingthatout'
+
+AZURE_TEXT_PROCESSING_KEY = 'hahahaImnotgivingthatout'
