@@ -18,6 +18,9 @@ def get_tweets_per_hashtag(hashtag, max_num_tweets=10):
     #search_url = TWITTER_SEARCH_TWEETS + ("?result_type=popular&count=%s" % (max_num_tweets, request_token['oauth_token']))
     pass
 
+def get_sentiment_of_tweet():
+    pass
+
 TEST_DOC = {
   "documents": [
     {
@@ -45,7 +48,6 @@ EXAMPLE_TWEETS = [
         "language": "fr"
     }
 ]
-
 
 def get_sentiment_of_tweets(formatted_tweets):
     if len(formatted_tweets) > 1000:

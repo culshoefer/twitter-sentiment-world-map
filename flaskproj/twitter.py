@@ -1,15 +1,22 @@
-import oauth2
+import tweepy
 from envvars import *
-
-CONSUMER_KEY = TWITTER_KEY
-CONSUMER_SECRET = TWITTER_SECRET
+import json
 
 
-def oauth_req(url, http_method="GET", post_body="", http_headers=None):
-    consumer = oauth2.Consumer(key=CONSUMER_KEY, secret=CONSUMER_SECRET)
-    token = oauth2.Token(key=OAUTH_TOKEN, secret=OAUTH_SECRET)
-    client = oauth2.Client(consumer, token)
-    resp, content = client.request( url, method=http_method, body=post_body, headers=http_headers )
-    return content
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
-home_timeline = oauth_req( 'https://api.twitter.com/1.1/statuses/home_timeline.json')
+api = tweepy.API(auth)
+
+
+def get_top_trends(woeid):
+    """
+    Gives the top trends for the location
+    Args:
+        :woeid is Yahoo woeid of the place
+    """
+    data = api.trends_place(698064)
+    result = []
+    for trend in data[0]["trends"]:
+        result.append(trend["name"])
+    return result
