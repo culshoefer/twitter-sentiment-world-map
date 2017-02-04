@@ -51,28 +51,113 @@
     {
       "name": "Brazil",
       "iso2countrycode": "BR",
-      "iso3countrycode": "BRA"
+      "iso3countrycode": "BRA",
+      "largestcities": [
+        {
+          "name": "Sau Paulo",
+          "lat": 23.5505,
+          "long": 46.6333
+        },
+        {
+          "name": "Rio de Janeiro",
+          "lat": 22.9068,
+          "long": 43.1729
+        },
+        {
+          "name": "Salvador",
+          "lat": 12.9730,
+          "long": 38.5023
+        }
+      ]
     },
     {
       "name": "People's Republic of China",
       "iso2countrycode": "CN",
-      "iso3countrycode": "CHN"
+      "iso3countrycode": "CHN",
+      "largestcities": [
+        {
+          "name": "Shanghai",
+          "lat": 31.2304,
+          "long": 121.4737
+        },
+        {
+          "name": "Beijing",
+          "lat": 39.9042,
+          "long": 116.4074
+        },
+        {
+          "name": "Guangzhou",
+          "lat": 23.1291,
+          "long": 113.2644
+        }
+      ]
     },
     {
       "name": "United States of America",
       "iso2countrycode": "US",
-      "iso3countrycode": "USA"
+      "iso3countrycode": "USA",
+      "largestcities": [
+        {
+          "name": "Los Angeles",
+          "lat": 34.0522,
+          "long": 118.2437
+        },
+        {
+          "name": "New York City",
+          "lat": 40.7128,
+          "long": 40.7128
+        },
+        {
+          "name": "Chicago",
+          "lat": 41.8781,
+          "long": 87.6298
+        }
+      ]
     },
     {
       "name": "Canada",
       "iso2countrycode": "CA",
-      "iso3countrycode": "CAN"
+      "iso3countrycode": "CAN",
+      "largestcities": [
+        {
+          "name": "Toronto",
+          "lat": 43.6532,
+          "long": 79.3832
+        },
+        {
+          "name": "Montreal",
+          "lat": 45.5017,
+          "long": 73.5673
+        },
+        {
+          "name": "Calgary",
+          "lat": 51.0486,
+          "long": 114.0708
+        }
+      ]
 
     },
     {
       "name": "Russian Federation",
       "iso2countrycode": "RU",
-      "iso3countrycode": "RUS"
+      "iso3countrycode": "RUS",
+      "largestcities": [
+        {
+          "name": "Moscow",
+          "lat": 55.7558,
+          "long": 37.6173
+        },
+        {
+          "name": "Saint Petersburg",
+          "lat": 59.9343,
+          "long": 30.3351
+        },
+        {
+          "name": "Yekaterinburg",
+          "lat": 56.8389,
+          "long": 60.6057
+        }
+      ]
     }
   ]
 }

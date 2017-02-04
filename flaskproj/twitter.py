@@ -22,7 +22,7 @@ def get_top_trends(woeid):
     return result
 
 
-def get_tweets_by_location(lat, long, radius="10mi"):
+def get_tweets_by_location(lat, long, radius="100mi"):
     """
     Gives tweets from a location
     Args:
