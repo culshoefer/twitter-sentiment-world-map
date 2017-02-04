@@ -1,7 +1,8 @@
 import urllib, json, http.client
-from flask import Flask
-
+from flask import Flask, render_template
+from twitter import *
 from envvars import *
+import random, statistics
 
 app = Flask(__name__)
 #https://twitter.com/search?q=%23saltbae&src=typd
@@ -10,16 +11,20 @@ TWITTER_SEARCH_TWEETS = 'https://api.twitter.com/1.1/search/tweets.json'
 MS_SENTIMENT_URL = 'https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment'
 
 
-def get_trending_hashtags_by_country():
-    pass
+@app.route('/api/')
+def get_sentiment_for_country_json_str():
+    #return json.dumps(get_all_sentiments_by_country())
+    return open('samplesentiment.json').read() # JUST TO SAVE SOME API CALLS .. AND TIME
 
 
-def get_tweets_per_hashtag(hashtag, max_num_tweets=10):
-    #search_url = TWITTER_SEARCH_TWEETS + ("?result_type=popular&count=%s" % (max_num_tweets, request_token['oauth_token']))
-    pass
+@app.route('/')
+def get_site():
+    return render_template('index.html')
 
-def get_sentiment_of_tweet():
-    pass
+# YES, this is incredibly hacky, please forgive me
+@app.route('/dist/datamaps.world.min.js')
+def get_site2():
+    return render_template('node_modules/datamaps/dist/datamaps.world.min.js')
 
 TEST_DOC = {
   "documents": [
@@ -49,6 +54,7 @@ EXAMPLE_TWEETS = [
     }
 ]
 
+
 def get_sentiment_of_tweets(formatted_tweets):
     """
     Just calls the Microsoft Cognitive Services Text Analysis Sentiment Analysis API
@@ -67,8 +73,41 @@ def get_sentiment_of_tweets(formatted_tweets):
     response = conn.getresponse()
     data = response.read()
     conn.close()
-    return data
+    return json.loads(data)
+
+
+def embellish_tweets(tweets_as_str):
+    embellished = []
+    for i, tweet in enumerate(tweets_as_str):
+        embellished.append({
+            "language": "en",
+            "id": str(i + random.random()),
+            "text": tweet
+        })
+    return embellished
+
+
+def get_sentiment_of_country(country):
+    tweets_of_country_as_str_list = get_tweets_by_country(country)
+    sentiments = get_sentiment_of_tweets(embellish_tweets(tweets_of_country_as_str_list))
+    docs = sentiments["documents"]
+    s = []
+    for e in docs:
+        s.append(e["score"])
+    return statistics.median(s)
+
+
+def get_all_sentiments_by_country():
+    """
+    This is the function that our API calls
+    """
+    ret = []
+    for i, country in enumerate(get_magic_countries_cities_info()["countries"]):
+        e = {"sentiment": get_sentiment_of_country(country), "countrycode": country["iso3countrycode"]}
+        ret.append(e)
+        print(str(i+1) + ": " + country["name"] + ", " + str(e["sentiment"]))
+    return ret
 
 if __name__ == "__main__":
-    sentiments = get_sentiment_of_tweets(EXAMPLE_TWEETS)
+    sentiments = get_all_sentiments_by_country()
     print(sentiments)

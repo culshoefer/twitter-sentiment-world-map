@@ -148,3 +148,4 @@ pyvenv.cfg
 pip-selfcheck.json
 
 /flaskproj/envvars.py
+/flaskproj/templates/node_modules/

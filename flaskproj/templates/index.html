@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Visualisation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+    <style media="screen">
+      #vis {
+        position: relative;
+        width: 900px;
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="dist/datamaps.world.min.js"></script>
+    <div class="container">
+      <h1 class="center">Mood of the World</h1>
+      <div id="vis"></div>
+    </div>
+    <script>
+
+      $(document).ready(function() {
+          $.getJSON('/api', function(data) {
+            console.log(data);
+            console.log(JSON.stringify(data));
+            var color = d3.scale.threshold()
+            .domain(d3.range(0.0, 1.0)) // https://bl.ocks.org/lucguillemot/37cc6eccbdd365556feb or https://bl.ocks.org/mbostock/4060606
+            .range(d3.schemeBlues);     // Tried to make it work similarly to this guy, failed to far, TODO
+            var colorScaleLin = d3.scale.linear()
+            .domain([0, data.length-1])
+            .interpolate(d3.interpolateLab)
+            .range([0, 1]);
+            var correctly_formatted_data = {};
+            for(var i = 0; i < data.length; i++) {
+                correctly_formatted_data[data[i]["countrycode"]] = color(0.1 * data[i]["sentiment"]);
+            }
+              //TODO
+            var basic_choropleth = new Datamap({
+              element: document.getElementById("vis"),
+              projection: 'mercator',
+              fills: {
+                defaultFill: "#ABDDA4",
+                authorHasTraveledTo: "#fa0fa0"
+              },
+              data: {/*
+                USA: {
+                  fillKey: "authorHasTraveledTo",
+                  topHashtag: "#Trending",
+                },
+                JPN: {
+                  fillKey: "authorHasTraveledTo",
+                  topHashtag: "#Trending",
+                },
+                ITA: {
+                  fillKey: "authorHasTraveledTo",
+                  topHashtag: "#Trending",
+                },
+                CRI: {
+                  fillKey: "authorHasTraveledTo",
+                  topHashtag: "#Trending",
+                },
+                KOR: {
+                  fillKey: "authorHasTraveledTo",
+                  topHashtag: "#Trending",
+                },
+                DEU: {
+                  fillKey: "authorHasTraveledTo",
+                  topHashtag: "#Trending",
+                },
+              */},
+              geographyConfig: {
+                  popupTemplate: function(geo, data) {
+                      return [
+                        '<div class="hoverinfo"><strong>',
+                          'Top Hashtag: '
+                          + geo.properties.name, ': '
+                          + data.topHashtag,
+                        '</strong></div>'
+                      ].join('');
+                  }
+              }
+            });
+
+            basic_choropleth.updateChoropleth(correctly_formatted_data);
+
+            // var map = new Datamap({
+            //     element: document.getElementById('container'),
+            //     fills: {
+            //         HIGH: '#afafaf',
+            //         LOW: '#123456',
+            //         MEDIUM: 'blue',
+            //         UNKNOWN: 'rgb(0,0,0)',
+            //         defaultFill: 'green'
+            //     },
+            //     data: {
+            //         IRL: {
+            //             fillKey: 'LOW',
+            //             numberOfThings: 2002
+            //         },
+            //         USA: {
+            //             fillKey: 'MEDIUM',
+            //             numberOfThings: 10381
+            //         }
+            //     }
+            // });
+
+            // Draw a legend for this map
+            // map.legend();
+
+
+            // updating choropleth
+            // map.updateChoropleth({
+            //    USA: {fillKey: 'LOW'},
+            //    CAN: '#0fa0fa'
+            // });
+
+            // reset map
+            // map.updateChoropleth(null, {reset: true})
+
+            });
+
+
+          });
+    </script>
+  </body>
+</html>

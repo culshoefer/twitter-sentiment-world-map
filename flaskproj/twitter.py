@@ -1,11 +1,12 @@
 import tweepy
 from envvars import *
+from server import *
 import json
 
 
 MAGIC_COUNTRIES_CITIES_FILE = 'countries.json'
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 
 api = tweepy.API(auth)
 
@@ -59,4 +60,7 @@ def get_tweets_by_country(country):
 
     return result
 
-print(get_tweets_by_country(get_magic_countries_cities_info()["countries"][0]))
+
+
+if __name__ == "__main__":
+    print(get_tweets_by_country(get_magic_countries_cities_info()["countries"][0]))
