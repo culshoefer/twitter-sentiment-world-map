@@ -50,6 +50,11 @@ EXAMPLE_TWEETS = [
 ]
 
 def get_sentiment_of_tweets(formatted_tweets):
+    """
+    Just calls the Microsoft Cognitive Services Text Analysis Sentiment Analysis API
+    :param formatted_tweets: Tweets, formatted in the way EXAMPLE_TWEETS is formatted
+    :return: The bare return value from the API
+    """
     if len(formatted_tweets) > 1000:
         raise BaseException('MS will reject requests on more than 1000 documents')
     headers = {

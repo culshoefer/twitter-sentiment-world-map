@@ -1,0 +1,78 @@
+{
+  "countries": [
+    {
+      "name": "Algeria",
+      "iso2countrycode": "DZ",
+      "iso3countrycode": "DZA",
+      "largestcities": [
+        {
+          "name": "Algiers",
+          "lat": 36.766667,
+          "latdirection": "N",
+          "long": 3.216667,
+          "longdirection": "E"
+        },
+        {
+          "name": "Oran",
+          "lat": 35.696944,
+          "latdirection": "N",
+          "long": -0.633056,
+          "longdirection": "W"
+        },
+        {
+          "name": "Constantine",
+          "lat": 36.35,
+          "latdirection": "N",
+          "long": 6.6,
+          "longdirection": "E"
+        }
+      ]
+    },
+    {
+      "name": "Kazakhstan",
+      "iso2countrycode": "KZ",
+      "iso3countrycode": "KAZ"
+    },
+    {
+      "name": "Argentina",
+      "iso2countrycode": "AR",
+      "iso3countrycode": "ARG"
+    },
+    {
+      "name": "India",
+      "iso2countrycode": "IN",
+      "iso3countrycode": "IND"
+    },
+    {
+      "name": "Australia",
+      "iso2countrycode": "AU",
+      "iso3countrycode": "AUS"
+    },
+    {
+      "name": "Brazil",
+      "iso2countrycode": "BR",
+      "iso3countrycode": "BRA"
+    },
+    {
+      "name": "People's Republic of China",
+      "iso2countrycode": "CN",
+      "iso3countrycode": "CHN"
+    },
+    {
+      "name": "United States of America",
+      "iso2countrycode": "US",
+      "iso3countrycode": "USA"
+    },
+    {
+      "name": "Canada",
+      "iso2countrycode": "CA",
+      "iso3countrycode": "CAN"
+
+    },
+    {
+      "name": "Russian Federation",
+      "iso2countrycode": "RU",
+      "iso3countrycode": "RUS"
+    }
+  ]
+}
