@@ -32,55 +32,62 @@
     </div>
     <script>
 
+      function formatData(data) {
+        var formattedData = {};
+
+        for (var i=0; i<data.length; i++) {
+          var sentiment = data[i]["sentiment"];
+          var fillKey = "DEF";
+
+          if (sentiment > 0.8) {
+            fillKey = "HIGH";
+          }
+          else if (sentiment > 0.4) {
+            fillKey = "MEDIUM";
+          }
+          else {
+            fillKey = "LOW";
+          }
+
+          formattedData[data[i]["countrycode"]] = {
+            "fillKey": fillKey,
+            "topHashtag": "#Trending",
+            "sentiment": data[i]["sentiment"]
+          }
+        }
+
+        return formattedData;
+      }
+
       $(document).ready(function() {
           $.getJSON('/api', function(data) {
             console.log(data);
             console.log(JSON.stringify(data));
-            var color = d3.scale.threshold()
-            .domain(d3.range(0.0, 1.0)) // https://bl.ocks.org/lucguillemot/37cc6eccbdd365556feb or https://bl.ocks.org/mbostock/4060606
-            .range(d3.schemeBlues);     // Tried to make it work similarly to this guy, failed to far, TODO
-            var colorScaleLin = d3.scale.linear()
-            .domain([0, data.length-1])
-            .interpolate(d3.interpolateLab)
-            .range([0, 1]);
-            var correctly_formatted_data = {};
-            for(var i = 0; i < data.length; i++) {
-                correctly_formatted_data[data[i]["countrycode"]] = color(0.1 * data[i]["sentiment"]);
-            }
-              //TODO
+
+            // var color = d3.scale.threshold()
+            // .domain(d3.range(0.0, 1.0)) // https://bl.ocks.org/lucguillemot/37cc6eccbdd365556feb or https://bl.ocks.org/mbostock/4060606
+            // .range(d3.schemeBlues);     // Tried to make it work similarly to this guy, failed to far, TODO
+            //
+            // var colorScaleLin = d3.scale.linear()
+            // .domain([0, data.length-1])
+            // .interpolate(d3.interpolateLab)
+            // .range([0, 1]);
+            //
+            // var correctly_formatted_data = {};
+            // for(var i = 0; i < data.length; i++) {
+            //     correctly_formatted_data[data[i]["countrycode"]] = color(0.1 * data[i]["sentiment"]);
+            // }
+
             var basic_choropleth = new Datamap({
               element: document.getElementById("vis"),
               projection: 'mercator',
               fills: {
-                defaultFill: "#ABDDA4",
-                authorHasTraveledTo: "#fa0fa0"
+                'HIGH': '#1D257F',
+                'MEDIUM': '#2E3BCC',
+                'LOW': '#3A4AFF',
+                'DEF': '#8690FF'
               },
-              data: {/*
-                USA: {
-                  fillKey: "authorHasTraveledTo",
-                  topHashtag: "#Trending",
-                },
-                JPN: {
-                  fillKey: "authorHasTraveledTo",
-                  topHashtag: "#Trending",
-                },
-                ITA: {
-                  fillKey: "authorHasTraveledTo",
-                  topHashtag: "#Trending",
-                },
-                CRI: {
-                  fillKey: "authorHasTraveledTo",
-                  topHashtag: "#Trending",
-                },
-                KOR: {
-                  fillKey: "authorHasTraveledTo",
-                  topHashtag: "#Trending",
-                },
-                DEU: {
-                  fillKey: "authorHasTraveledTo",
-                  topHashtag: "#Trending",
-                },
-              */},
+              data: formatData(data),
               geographyConfig: {
                   popupTemplate: function(geo, data) {
                       return [
@@ -94,28 +101,7 @@
               }
             });
 
-            basic_choropleth.updateChoropleth(correctly_formatted_data);
-
-            // var map = new Datamap({
-            //     element: document.getElementById('container'),
-            //     fills: {
-            //         HIGH: '#afafaf',
-            //         LOW: '#123456',
-            //         MEDIUM: 'blue',
-            //         UNKNOWN: 'rgb(0,0,0)',
-            //         defaultFill: 'green'
-            //     },
-            //     data: {
-            //         IRL: {
-            //             fillKey: 'LOW',
-            //             numberOfThings: 2002
-            //         },
-            //         USA: {
-            //             fillKey: 'MEDIUM',
-            //             numberOfThings: 10381
-            //         }
-            //     }
-            // });
+            // basic_choropleth.updateChoropleth(correctly_formatted_data);
 
             // Draw a legend for this map
             // map.legend();
