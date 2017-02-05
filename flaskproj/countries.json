@@ -9,16 +9,6 @@
           "name": "Algiers",
           "lat": 36.766667,
           "long": 3.216667
-        },
-        {
-          "name": "Oran",
-          "lat": 35.696944,
-          "long": -0.633056
-        },
-        {
-          "name": "Constantine",
-          "lat": 36.35,
-          "long": 6.6
         }
       ]
     },
@@ -31,16 +21,6 @@
             "name": "Almaty",
             "lat": 43.2775,
             "long": 76.895833
-          },
-          {
-            "name": "Shymkent",
-            "lat": 42.316667,
-            "long": 69.595833
-          },
-          {
-            "name": "Karaganda",
-            "lat": 49.833333,
-            "long": 73.166667
           }
       ]
     },
@@ -53,16 +33,6 @@
             "name": "Buenos Aires",
             "lat": -34.603333,
             "long": -58.381667
-          },
-          {
-            "name": "Córdoba",
-            "lat": -31.416667,
-            "long": -64.183333
-          },
-          {
-            "name": "Rosario",
-            "lat": -32.95,
-            "long": -60.666667
           }
       ]
     },
@@ -75,16 +45,6 @@
             "name": "Mumbai",
             "lat": 18.975,
             "long": 72.825833
-          },
-          {
-            "name": "Delhi",
-            "lat": 28.61,
-            "long": 77.23
-          },
-          {
-            "name": "Bangalore",
-            "lat": 12.966667,
-            "long": 77.566667
           }
       ]
     },
@@ -97,16 +57,6 @@
             "name": "Sydney",
             "lat": -33.865,
             "long": 151.209444
-          },
-          {
-            "name": "Melbourne",
-            "lat": -37.813611,
-            "long": 144.963056
-          },
-          {
-            "name": "Brisbane",
-            "lat": -27.466667,
-            "long": 153.033333
           }
       ]
     },
@@ -119,16 +69,6 @@
           "name": "Sau Paulo",
           "lat": 23.5505,
           "long": 46.6333
-        },
-        {
-          "name": "Rio de Janeiro",
-          "lat": 22.9068,
-          "long": 43.1729
-        },
-        {
-          "name": "Salvador",
-          "lat": 12.9730,
-          "long": 38.5023
         }
       ]
     },
@@ -141,16 +81,6 @@
           "name": "Shanghai",
           "lat": 31.2304,
           "long": 121.4737
-        },
-        {
-          "name": "Beijing",
-          "lat": 39.9042,
-          "long": 116.4074
-        },
-        {
-          "name": "Guangzhou",
-          "lat": 23.1291,
-          "long": 113.2644
         }
       ]
     },
@@ -163,16 +93,6 @@
           "name": "Los Angeles",
           "lat": 34.0522,
           "long": 118.2437
-        },
-        {
-          "name": "New York City",
-          "lat": 40.7128,
-          "long": 40.7128
-        },
-        {
-          "name": "Chicago",
-          "lat": 41.8781,
-          "long": 87.6298
         }
       ]
     },
@@ -185,16 +105,6 @@
           "name": "Toronto",
           "lat": 43.6532,
           "long": 79.3832
-        },
-        {
-          "name": "Montreal",
-          "lat": 45.5017,
-          "long": 73.5673
-        },
-        {
-          "name": "Calgary",
-          "lat": 51.0486,
-          "long": 114.0708
         }
       ]
 
@@ -208,16 +118,102 @@
           "name": "Moscow",
           "lat": 55.7558,
           "long": 37.6173
-        },
+        }
+      ]
+    },
+    {
+      "name": "France",
+      "iso2countrycode": "FR",
+      "iso3countrycode": "FRA",
+      "largestcities": [
         {
-          "name": "Saint Petersburg",
-          "lat": 59.9343,
-          "long": 30.3351
-        },
+          "name": "Paris",
+          "lat": 48.8566,
+          "long": 2.3522
+        }
+      ]
+    },
+    {
+      "name": "Spain",
+      "iso2countrycode": "ES",
+      "iso3countrycode": "ESP",
+      "largestcities": [
         {
-          "name": "Yekaterinburg",
-          "lat": 56.8389,
-          "long": 60.6057
+          "name": "Madrid",
+          "lat": 40.4168,
+          "long": 3.7038
+        }
+      ]
+    },
+    {
+      "name": "Germany",
+      "iso2countrycode": "DE",
+      "iso3countrycode": "DEU",
+      "largestcities": [
+        {
+          "name": "Berlin",
+          "lat": 52.5200,
+          "long": 13.4050
+        }
+      ]
+    },
+    {
+      "name": "Sudan",
+      "iso2countrycode": "SD",
+      "iso3countrycode": "SDN",
+      "largestcities": [
+        {
+          "name": "Khartoum",
+          "lat": 15.5007,
+          "long": 32.5599
+        }
+      ]
+    },
+    {
+      "name": "Mexico",
+      "iso2countrycode": "MX",
+      "iso3countrycode": "MEX",
+      "largestcities": [
+        {
+          "name": "Mexico City",
+          "lat": 19.4326,
+          "long": 99.1332
+        }
+      ]
+    },
+    {
+      "name": "Peru",
+      "iso2countrycode": "PE",
+      "iso3countrycode": "PER",
+      "largestcities": [
+        {
+          "name": "Lima",
+          "lat": -12.046374,
+          "long": -77.042793
+        }
+      ]
+    },
+    {
+      "name": "Indonesia",
+      "iso2countrycode": "ID",
+      "iso3countrycode": "IDN",
+      "largestcities": [
+        {
+          "name": "Jakarta",
+          "lat": 6.1745,
+          "long": 106.8227
+        }
+      ]
+    },
+    {
+      "name": "Saudi Arabia",
+      "iso2countrycode": "ES",
+      "iso3countrycode": "SAU",
+      "largestcities": [
+        {
+          "name": "Riyadh",
+          "lat": 24.7136,
+          "long": 46.6753
         }
       ]
     }

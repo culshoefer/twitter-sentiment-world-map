@@ -13,8 +13,8 @@ MS_SENTIMENT_URL = 'https://westus.api.cognitive.microsoft.com/text/analytics/v2
 
 @app.route('/api/')
 def get_sentiment_for_country_json_str():
-    # return json.dumps(get_all_sentiments_by_country())
-    return open('samplesentiment.json').read() # JUST TO SAVE SOME API CALLS .. AND TIME
+    return json.dumps(get_all_sentiments_by_country())
+    # return open('samplesentiment.json').read() # JUST TO SAVE SOME API CALLS .. AND TIME
 
 @app.route('/')
 def get_site():
