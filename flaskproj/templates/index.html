@@ -17,6 +17,14 @@
         width: 900px;
         height: 600px;
       }
+
+      .container {
+        margin-top: 30px;
+      }
+
+      nav {
+        background-color: #1D257F;
+      }
     </style>
   </head>
   <body>
@@ -26,8 +34,12 @@
     <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.8/datamaps.world.min.js"></script>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">What the World Feels Like</a>
+      </div>
+    </nav>
     <div class="container">
-      <h1 class="center">Mood of the World</h1>
       <div id="vis"></div>
     </div>
     <script>
@@ -67,31 +79,31 @@
       }
 
       $(document).ready(function() {
-          $.getJSON('/api', function(data) {
-            console.log(JSON.stringify(data));
+        $.getJSON('/api', function(data) {
+          console.log(JSON.stringify(data));
 
-            var basic_choropleth = new Datamap({
-              element: document.getElementById("vis"),
-              projection: 'mercator',
-              fills: {
-                defaultFill: '#C1C5C8'
-              },
-              data: data,
-              geographyConfig: {
-                  popupTemplate: function(geo, data) {
-                      return [
-                        '<div class="hoverinfo"><strong>',
-                          'Top Hashtag: '
-                          + geo.properties.name, ': '
-                          // + data.topHashtag,
-                        , '</strong></div>'
-                      ].join('');
-                  }
+          var basic_choropleth = new Datamap({
+            element: document.getElementById("vis"),
+            projection: 'mercator',
+            fills: {
+              defaultFill: '#C1C5C8'
+            },
+            data: data,
+            geographyConfig: {
+              popupTemplate: function(geo, data) {
+                return [
+                  '<div class="hoverinfo"><strong>',
+                    'Top Hashtag: '
+                    + geo.properties.name, ': '
+                    // + data.topHashtag,
+                  , '</strong></div>'
+                ].join('');
               }
-            });
-
-            basic_choropleth.updateChoropleth(formatData(data));
+            }
           });
+
+          basic_choropleth.updateChoropleth(formatData(data));
+        });
       });
     </script>
   </body>
