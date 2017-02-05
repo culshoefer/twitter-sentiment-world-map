@@ -13,18 +13,12 @@ MS_SENTIMENT_URL = 'https://westus.api.cognitive.microsoft.com/text/analytics/v2
 
 @app.route('/api/')
 def get_sentiment_for_country_json_str():
-    #return json.dumps(get_all_sentiments_by_country())
+    # return json.dumps(get_all_sentiments_by_country())
     return open('samplesentiment.json').read() # JUST TO SAVE SOME API CALLS .. AND TIME
-
 
 @app.route('/')
 def get_site():
     return render_template('index.html')
-
-# YES, this is incredibly hacky, please forgive me
-@app.route('/dist/datamaps.world.min.js')
-def get_site2():
-    return render_template('node_modules/datamaps/dist/datamaps.world.min.js')
 
 TEST_DOC = {
   "documents": [
@@ -73,7 +67,7 @@ def get_sentiment_of_tweets(formatted_tweets):
     response = conn.getresponse()
     data = response.read()
     conn.close()
-    return json.loads(data)
+    return json.loads(data.decode())
 
 
 def embellish_tweets(tweets_as_str):
@@ -109,5 +103,6 @@ def get_all_sentiments_by_country():
     return ret
 
 if __name__ == "__main__":
-    sentiments = get_all_sentiments_by_country()
-    print(sentiments)
+    # sentiments = get_all_sentiments_by_country()
+    # print(sentiments)
+    app.run(debug=True)
